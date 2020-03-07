@@ -44,6 +44,7 @@ client.on('messageCreate', async (message: Message) => {
   if (!cmd) return;
   if (cmd.owner && !config.devs.includes(message.author.id)) return;
   try {
+    client.redisConnection.incr(`${client.lockKey}:commands`);
     return await cmd.exec(message, args);
   } catch (e) {
     return;

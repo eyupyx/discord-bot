@@ -12,6 +12,8 @@ export default class extends Command {
   }
   async exec(message: Message, args: string[]) {
     //@ts-ignore
+    const commandsUsed = await this.client.redisConnection.get(`${this.client.lockKey}:commands`)
+    //@ts-ignore
     const stats: Stats = await this.client.getStats();
     if (!args[0]) return message.channel.createMessage({
       embed: {
@@ -30,6 +32,9 @@ export default class extends Command {
           },
           {
             name: 'Shard', value: (message.channel as TextChannel).guild.shard.id + '/' + this.client.shards.size, inline: true
+          },
+          {
+            name: 'Commands Used', value: `${commandsUsed.toLocaleString()}`, inline: true
           }
         ]
       }
