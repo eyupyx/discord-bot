@@ -15,7 +15,7 @@ export default class extends Command {
     const data = await res.json();
 
     if (!args[0]) return message.channel.createMessage(`Please provide a country name.`);
-    const country = data.find(c => c.country.toLowerCase() === args.join(" ").toLowerCase());
+    const country = data.find(c => c.country.toLowerCase().includes(args.join(" ").toLowerCase()));
     if (!country) return message.channel.createMessage(`That country does not exist, or does not have the virus yet.`);
 
     message.channel.createMessage({
