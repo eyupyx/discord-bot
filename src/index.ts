@@ -11,8 +11,8 @@ const client = new Client(process.env.DEVELOPMENT === 'true' ? config.tokens.dev
     disableEveryone: true,
     maxShards: 3
   },
-  lockKey: 'corona',
-  redisHost: '35.193.27.54',
+  lockKey: process.env.DEVELOPMENT === 'true' ? config.lock_keys.dev : config.lock_keys.prod,
+  redisHost: config.redis.host,
   shardsPerCluster: 3,
   //@ts-ignore
   getFirstShard: () => {
@@ -36,7 +36,7 @@ client.on('acquiredLock', () => {
 
 client.on('messageCreate', async (message: Message) => {
   if (message.author.bot) return;
-  const prefix = "COV ";
+  const prefix = process.env.DEVELOPMENT === 'true' ? '...' : 'COV ';
   if (!message.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
   const args = message.content.trim().slice(prefix.length).split(/\s+/g);
   const command = args.shift().toLowerCase();

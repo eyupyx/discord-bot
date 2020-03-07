@@ -20,6 +20,7 @@ export default class extends Command {
           name: 'Ping!',
           icon_url: this.client.user.avatarURL
         },
+        color: this.client.color,
         footer: {
           text: 'COVID-19 Bot is sponsored by https://lunasrv.com/server'
         },
@@ -30,10 +31,33 @@ export default class extends Command {
           },
           {
             name: 'Roundabout',
-            value: 'idk what this should be??'
+            value: 'Pinging...'
           }
         ]
       }
+    }).then(sent => {
+      sent.edit({
+        embed: {
+          author: {
+            name: 'Ping!',
+            icon_url: this.client.user.avatarURL
+          },
+          color: this.client.color,
+          footer: {
+            text: 'COVID-19 Bot is sponsored by https://lunasrv.com/server'
+          },
+          fields: [
+            {
+              name: 'Shard Latency',
+              value: stats.shards.map(c => `**${c.id}:** ${c.latency} ms`).join(', ')
+            },
+            {
+              name: 'Roundabout',
+              value: `${(sent.editedTimestamp || sent.createdAt) - (message.editedTimestamp || message.createdAt)} ms`
+            }
+          ]
+        }
+      })
     })
   }
 }
