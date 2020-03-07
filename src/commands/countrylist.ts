@@ -21,9 +21,6 @@ export default class extends Command {
           icon_url: this.client.user.avatarURL
         },
         color: this.client.color,
-        footer: {
-          text: 'COVID-19 Bot is sponsored by https://lunasrv.com/server'
-        },
         fields: [
           {
             name: 'List of affected countries', value: 'It can be found [here](https://www.worldometers.info/coronavirus/#countries)'
