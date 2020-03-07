@@ -6,7 +6,7 @@ import config = require('../config.json');
 import Logger from "@ayanaware/logger";
 
 
-const client = new Client(`Njg1MjY4MjE0NDM1MDIwODA5.XmMaRg.YZPIHN5nnyK4kwtQctrEbPbKOhw`, {
+const client = new Client(process.env.DEVELOPMENT === 'true' ? config.tokens.dev : config.tokens.prod, {
   erisOptions: {
     disableEveryone: true,
     maxShards: 3
