@@ -27,19 +27,19 @@ export default class extends Command {
         color: this.client.color,
         fields: [
           {
-            name: 'Cases', value: country.cases, inline: true
+            name: 'Cases', value: country.cases.toLocaleString(), inline: true
           },
           {
-            name: 'Recovered', value: country.recovered, inline: true
+            name: 'Recovered', value: country.recovered.toLocaleString(), inline: true
           },
           {
-            name: 'Deaths', value: country.deaths, inline: true
+            name: 'Deaths', value: country.deaths.toLocaleString(), inline: true
           },
           {
-            name: 'Cases Today', value: country.todayCases, inline: true
+            name: 'Cases Today', value: country.todayCases.toLocaleString(), inline: true
           },
           {
-            name: 'Deaths Today', value: country.todayDeaths, inline: true
+            name: 'Deaths Today', value: country.todayDeaths.toLocaleString(), inline: true
           },
         ]
       }

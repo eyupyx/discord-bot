@@ -4,8 +4,8 @@ import * as p from 'path';
 import { Command } from '../struct/Command';
 
 export class Client extends GatewayClient {
-  public commands: Command[] = [];
-  public aliases: string[] = [];
+  public commands: Map<string, Command> = new Map();
+  public aliases: Map<string, Command> = new Map();
   public color: number = 32896;
   constructor(token: string, options: GatewayClientOptions) {
     super(token, options);
@@ -18,9 +18,9 @@ export class Client extends GatewayClient {
     for (const file of files) {
       delete require.cache[require.resolve(`${process.cwd()}${p.sep}${file}`)];
       const command: Command = new ((await import(`${process.cwd()}${p.sep}${file}`)).default)(this);
-      this.commands.push(command);
+      this.commands.set(command.name, command);
       for (const alias of command.aliases) {
-        this.aliases.push(alias, command.name);
+        this.aliases.set(alias, command);
       }
     }
   }

@@ -24,6 +24,9 @@ client.queue();
 
 client.on('shardReady', (id: number) => {
   Logger.get(Client).info(`Shard: ${id} with status 'ready'`);
+  client.shards.get(id).editStatus("dnd", {
+    name: `https://corona.lmao.ninja/invite (${id + 1}/${client.options.maxShards})`
+  })
 });
 
 client.on('shardDisconnect', (err: Error, id: number) => {
@@ -40,7 +43,7 @@ client.on('messageCreate', async (message: Message) => {
   if (!message.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
   const args = message.content.trim().slice(prefix.length).split(/\s+/g);
   const command = args.shift().toLowerCase();
-  const cmd = client.commands.find(c => c.name === command) || client.commands.find(c => c.name === client.aliases.find(c => c === command));
+  const cmd = client.commands.get(command) || client.aliases.get(command);
   if (!cmd) return;
   if (cmd.owner && !config.devs.includes(message.author.id)) return;
   try {

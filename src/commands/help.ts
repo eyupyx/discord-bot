@@ -19,11 +19,11 @@ export default class extends Command {
         fields: [
           {
             name: 'Virus',
-            value: this.client.commands.filter(c => c.cat === 'virus').map(c => c.name).join(', ')
+            value: Array.from(this.client.commands).filter(c => c[1].cat === 'virus').map(c => c[1].name).join(', ')
           },
           {
             name: 'System',
-            value: this.client.commands.filter(c => c.cat === 'general' || c.cat === 'system').map(c => c.name).join(', ')
+            value: Array.from(this.client.commands).filter(c => c[1].cat === 'general' || c[1].cat === 'system').map(c => c[1].name).join(', ')
           }
         ]
       }

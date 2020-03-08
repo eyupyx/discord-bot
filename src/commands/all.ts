@@ -23,13 +23,13 @@ export default class extends Command {
         color: this.client.color,
         fields: [
           {
-            name: 'Cases', value: data.cases, inline: true
+            name: 'Cases', value: data.cases.toLocaleString(), inline: true
           },
           {
-            name: 'Recovered', value: data.recovered, inline: true
+            name: 'Recovered', value: data.recovered.toLocaleString(), inline: true
           },
           {
-            name: 'Deaths', value: data.deaths, inline: true
+            name: 'Deaths', value: data.deaths.toLocaleString(), inline: true
           },
         ]
       }

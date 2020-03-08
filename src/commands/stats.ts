@@ -18,20 +18,20 @@ export default class extends Command {
     if (!args[0]) return message.channel.createMessage({
       embed: {
         author: {
-          name: 'COVID-19 Stats',
+          name: 'COVID-19 Bot Statistics',
           icon_url: this.client.user.avatarURL
         },
         color: this.client.color,
         description: `**Memory:** ${(stats.memoryUsage.heapUsed / 1024 / 1024).toFixed(2)}/**8 GB**`,
         fields: [
           {
-            name: 'Servers', value: stats.guilds.toLocaleString(), inline: true
+            name: 'Guilds', value: stats.guilds.toLocaleString(), inline: true
           },
           {
             name: 'Users', value: stats.users.toLocaleString(), inline: true
           },
           {
-            name: 'Shard', value: (message.channel as TextChannel).guild.shard.id + '/' + this.client.shards.size, inline: true
+            name: 'Shard', value: ((message.channel as TextChannel).guild.shard.id + 1) + '/' + this.client.shards.size, inline: true
           },
           {
             name: 'Commands Used', value: `${commandsUsed.toLocaleString()}`, inline: true
@@ -47,7 +47,7 @@ export default class extends Command {
         },
         description: `**Memory:** ${(stats.memoryUsage.heapUsed / 1024 / 1024).toFixed(2)}/**8 GB**`,
         color: this.client.color,
-        fields: stats.shards.map(c => { return { name: `Shard ${c.id}`, value: `**Status:** ${c.status}\n**Latency:** ${c.latency} ms\n**Servers:** ${c.guilds}`, inline: true } })
+        fields: stats.shards.map(c => { return { name: `Shard ${c.id}`, value: `**Status:** ${c.status}\n**Latency:** ${c.latency} ms\n**Servers:** ${c.guilds.toLocaleString()}`, inline: true } })
       }
     });
   }
