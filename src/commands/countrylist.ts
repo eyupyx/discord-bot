@@ -5,7 +5,7 @@ export default class extends Command {
   constructor(client) {
     super(client, {
       name: 'countrylist',
-      aliases: [],
+      aliases: ['ls', 'cls', 'countryls'],
       description: 'Get all affected countries',
       cat: 'virus'
     });

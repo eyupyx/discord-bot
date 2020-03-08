@@ -35,6 +35,9 @@ export default class extends Command {
           },
           {
             name: 'Commands Used', value: `${commandsUsed.toLocaleString()}`, inline: true
+          },
+          {
+            name: 'Uptime', value: `${require('ms')(this.client.uptime)}`, inline: true
           }
         ]
       }

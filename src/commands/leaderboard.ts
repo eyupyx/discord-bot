@@ -5,7 +5,7 @@ export default class extends Command {
   constructor(client) {
     super(client, {
       name: 'leaderboard',
-      aliases: ['lb'],
+      aliases: ['lb', 'top'],
       description: 'Leaderboard of cases',
       cat: 'virus'
     });

@@ -5,6 +5,7 @@ export default class extends Command {
   constructor(client) {
     super(client, {
       name: 'help',
+      aliases: ['halp', '?', 'commands'],
       description: 'Get all commands'
     });
   }

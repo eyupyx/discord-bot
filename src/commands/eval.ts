@@ -7,6 +7,7 @@ export default class extends Command {
     super(client, {
       name: 'eval',
       description: 'Get all evals idk',
+      aliases: ['ev', 'evaluate'],
       cat: 'owner',
       owner: true
     });
