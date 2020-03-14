@@ -17,6 +17,7 @@ export default class extends Command {
           icon_url: this.client.user.avatarURL
         },
         color: this.client.color,
+        description: 'Updates:\n• Check out the new `region` command! (`cov region us wa`)\n• Leaderboard command now has a regions setting! (`cov lb china`)',
         fields: [
           {
             name: 'Virus',
