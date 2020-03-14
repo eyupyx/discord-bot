@@ -31,6 +31,7 @@ client.on('shardReady', (id: number) => {
 
 client.on('shardDisconnect', (err: Error, id: number) => {
   Logger.get(Client).info(`Shard: ${id} with status 'disconnected' because ${err.message}`);
+  process.exit(0)
 })
 
 client.on('acquiredLock', () => {
