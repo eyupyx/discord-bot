@@ -50,6 +50,7 @@ client.on('messageCreate', async (message: Message) => {
     client.redisConnection.incr(`${client.lockKey}:commands`);
     return await cmd.exec(message, args);
   } catch (e) {
+    console.error(e);
     return;
   }
 })

@@ -6,8 +6,12 @@
   "dependencies": {
     "@arcanebot/redis-sharder": "github:arcanebot/redis-sharder",
     "@ayanaware/logger": "^2.2.1",
+    "@types/chart.js": "^2.9.15",
     "@types/node": "^13.9.0",
+    "canvas": "^2.6.1",
+    "canvas-constructor": "^3.1.0",
     "chalk": "^3.0.0",
+    "chart.js": "^2.9.3",
     "eris": "^0.11.2",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0"
