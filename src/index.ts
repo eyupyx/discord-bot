@@ -27,6 +27,9 @@ client.on('shardReady', (id: number) => {
   client.shards.get(id).editStatus("dnd", {
     name: `https://corona.lmao.ninja/invite (${id + 1}/${client.options.maxShards})`
   })
+  client.getStats().then((stats: Stats) => {
+    client.dbl.postStats(stats.guilds, 0, client.options.maxShards)
+  });
 });
 
 client.on('shardDisconnect', (err: Error, id: number) => {
@@ -55,9 +58,6 @@ client.on('messageCreate', async (message: Message) => {
     return;
   }
 })
-client.getStats().then((stats: Stats) => {
-  client.dbl.postStats(stats.guilds, 0, client.options.maxShards)
-});
 
 setInterval(() => {
   client.getStats().then((stats: Stats) => {
