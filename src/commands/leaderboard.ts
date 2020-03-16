@@ -17,6 +17,7 @@ export default class extends Command {
       data.length = 10;
       let i = 1;
       return message.channel.createMessage({
+        content: Math.random() > .2 ? 'You can now **vote** for **COVID-19 Bot** here: <https://top.gg/bot/685268214435020809/vote>' : '',
         embed: {
           author: {
             name: 'COVID-19 Top 10 Cases',
@@ -36,6 +37,7 @@ export default class extends Command {
       country.regions.length = 10;
       let i = 1;
       return message.channel.createMessage({
+        content: Math.random() > .2 ? 'You can now **vote** for **COVID-19 Bot** here: <https://top.gg/bot/685268214435020809/vote>' : '',
         embed: {
           author: {
             name: 'COVID-19 Top 10 Cases for ' + country.country.name,

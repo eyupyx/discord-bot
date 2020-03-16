@@ -19,6 +19,7 @@ export default class extends Command {
     if (!country) return message.channel.createMessage(`That country does not exist, or does not have the virus yet.`);
 
     message.channel.createMessage({
+      content: Math.random() > .2 ? 'You can now **vote** for **COVID-19 Bot** here: <https://top.gg/bot/685268214435020809/vote>' : '',
       embed: {
         author: {
           name: 'COVID-19 statistics for ' + country.country,

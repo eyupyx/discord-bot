@@ -2,15 +2,32 @@ import { GatewayClient, GatewayClientOptions } from '@arcanebot/redis-sharder';
 import * as fs from 'fs';
 import * as p from 'path';
 import { Command } from '../struct/Command';
+import * as DBL from 'dblapi.js';
+import config = require('../../config.json')
+import { Pool } from 'pg';
 
 export class Client extends GatewayClient {
   public commands: Map<string, Command> = new Map();
   public aliases: Map<string, Command> = new Map();
   public color: number = 32896;
+  public dbl: DBL;
+  public pool: Pool;
   constructor(token: string, options: GatewayClientOptions) {
     super(token, options);
     this.token = token;
     this.readCommands();
+    this.dbl = new DBL(config.dbl.token, { webhookPort: config.dbl.port, webhookAuth: config.dbl.password });
+    this.pool = new Pool({
+      user: 'dicedtomato',
+      host: '144.172.70.163',
+      database: 'postgirl',
+      password: '69696969',
+      port: 5432
+    })
+  }
+
+  async randomChance() {
+    return Math.random() > .3;
   }
 
   async readCommands() {

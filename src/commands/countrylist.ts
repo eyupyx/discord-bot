@@ -15,6 +15,7 @@ export default class extends Command {
     const data = await res.json();
 
     message.channel.createMessage({
+      content: this.client.randomChance() ? 'You can now **vote** for **COVID-19 Bot** here: <https://top.gg/bot/685268214435020809/vote>' : null,
       embed: {
         author: {
           name: 'COVID-19 countries',

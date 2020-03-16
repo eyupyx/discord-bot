@@ -4,7 +4,7 @@ import { Client } from "./struct/Client";
 import { Message } from "eris";
 import config = require('../config.json');
 import Logger from "@ayanaware/logger";
-
+import { Stats } from '@arcanebot/redis-sharder';
 
 const client = new Client(process.env.DEVELOPMENT === 'true' ? config.tokens.dev : config.tokens.prod, {
   erisOptions: {
@@ -55,7 +55,12 @@ client.on('messageCreate', async (message: Message) => {
     return;
   }
 })
+client.getStats().then((stats: Stats) => {
+  client.dbl.postStats(stats.guilds, 0, client.options.maxShards)
+});
 
-// setInterval(() => { // this just showcases that stats do work
-//   if (Number(process.env.pm_id) === 0) client.getStats().then(stats => console.log(stats));
-// }, 5000);
+setInterval(() => {
+  client.getStats().then((stats: Stats) => {
+    client.dbl.postStats(stats.guilds, 0, client.options.maxShards)
+  });
+}, 1800000);
