@@ -16,7 +16,7 @@
     "dblapi.js": "^2.4.0",
     "eris": "^0.11.2",
     "ms": "^2.1.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pg": "^7.18.2"
   },
   "devDependencies": {},
